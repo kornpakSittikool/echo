@@ -35,3 +35,48 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 "# echo" 
+
+# Echo Project
+
+A Next.js web application with modern UI components and animations.
+
+## Technologies & Libraries
+
+- **Next.js 14**: React framework for production-grade applications
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
+- **Framer Motion**: Animation library for React components
+- **Lucide Icons**: Modern icon library for React applications
+
+## Features
+
+- Responsive navigation bar
+- Smooth animations using Framer Motion
+- Mobile-friendly hamburger menu
+- Glass morphism design effects
+- Dynamic menu transitions
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone [your-repo-url]
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the development server:
+```bash
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Dependencies
+
+- `framer-motion`: For smooth animations and transitions
+- `lucide-react`: For modern icons
+- `tailwindcss`: For styling
+- `typescript`: For type safety
