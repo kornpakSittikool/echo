@@ -29,7 +29,10 @@ export function Navbar() {
         <ul className={styles.desktopMenu}>
           {menuItems.map((item) => (
             <li key={item}>
-              <a href="#" className={styles.navLink}>
+              <a
+                href="#"
+                className={styles.navLink}
+              >
                 {item}
               </a>
             </li>
@@ -37,7 +40,10 @@ export function Navbar() {
         </ul>
 
         {/* Hamburger Button (มือถือ) */}
-        <button className={styles.hamburger} onClick={() => setOpen(!open)}>
+        <button
+          className={styles.hamburger}
+          onClick={() => setOpen(!open)}
+        >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
