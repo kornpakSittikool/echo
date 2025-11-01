@@ -15,6 +15,7 @@
 </div>
 
 ## สารบัญ
+
 - [ภาพรวม](#ภาพรวม)
 - [เทคโนโลยี](#เทคโนโลยี)
 - [โครงสร้างโปรเจกต์](#โครงสร้างโปรเจกต์)
@@ -29,15 +30,18 @@
 - [หมายเหตุสำหรับโปรดักชัน](#หมายเหตุสำหรับโปรดักชัน)
 
 ## ภาพรวม
+
 โปรเจกต์ Next.js ที่เตรียมโครงสร้างให้พร้อมใช้งาน ทั้งการพัฒนาแบบ Hot Reload บน Docker, การตั้งค่า ESLint แบบ Type‑Aware, และแนวทางการตั้งชื่อ/แยกคอมโพเนนต์ชัดเจนสำหรับทีม
 
 ## เทคโนโลยี
+
 - Next.js 15, React 19
 - Tailwind CSS v4
 - Framer Motion, Lucide Icons
 - TypeScript (strict) + Path alias `@/*`
 
 ## โครงสร้างโปรเจกต์
+
 ```
 src/
   app/                # App Router (layout.tsx, page.tsx, globals.css)
@@ -52,6 +56,7 @@ postcss.config.mjs    # Tailwind 4
 ## เริ่มใช้งาน
 
 ### Docker (แนะนำ)
+
 รันครั้งแรก (พร้อม Hot Reload):
 
 ```bash
@@ -67,6 +72,7 @@ docker compose up
 เปิดเว็บ: http://localhost:3000
 
 หมายเหตุสำคัญ:
+
 - Compose ตั้งค่า watch บน Windows แล้ว (`WATCHPACK_POLLING/INTERVAL`, `CHOKIDAR_USEPOLLING/INTERVAL`)
 - แก้โค้ดแล้วรีโหลดอัตโนมัติ ไม่ต้อง build image ใหม่ทุกครั้ง
 - ถ้าแก้ `package.json`/`package-lock.json` หรือ `Dockerfile` ให้ build ใหม่ด้วย `docker compose up --build`
@@ -83,6 +89,7 @@ docker compose down -v --remove-orphans
 ```
 
 ### รันบนเครื่อง (ไม่ใช้ Docker)
+
 Prerequisites: Node.js 20+, npm 10+
 
 ```bash
@@ -92,11 +99,13 @@ npm run dev
 ```
 
 ## สคริปต์สำคัญ
+
 - `npm run dev` — รัน dev server (ใช้ผ่าน Docker ได้)
 - `npm run build` — สร้างโปรดักชันบิลด์
 - `npm run start` — รันเซิร์ฟเวอร์โปรดักชันจากผลลัพธ์ที่ build แล้ว
 
 ## ESLint และกฎโค้ด
+
 - คอนฟิก: ESLint 9 (Flat Config) + Next.js + TypeScript‑ESLint แบบ Type‑Aware ดูไฟล์ `eslint.config.mjs`
 - Ignore โฟลเดอร์มาตรฐาน: `node_modules`, `.next`, `out`, `dist`, `coverage`
 - เปิด Type‑Aware สำหรับ `src/**/*.{ts,tsx}` ด้วย `parserOptions.project: true`
@@ -111,6 +120,7 @@ docker compose exec client npm run lint
 ```
 
 กฎสำคัญ (สรุป):
+
 - `@typescript-eslint/no-explicit-any: error` — ห้ามใช้ `any`
 - `import/no-default-export: error` — ห้าม default export (ยกเว้นไฟล์ App Router)
 - `no-restricted-syntax` (ImportNamespaceSpecifier) — ห้าม `import * as X from '...'`
@@ -119,19 +129,24 @@ docker compose exec client npm run lint
 - `no-console: warn` — `console.*` เตือน
 
 ข้อแนะนำในการใช้งานกฎ:
+
 - ใช้ named exports สำหรับคอมโพเนนต์: `export function Navbar() {}` + import แบบ `import { Navbar } from '@/components/navbar/navbar.component'`
 - ใช้ path alias `@/*` แทน `../../..`
 - หากจำเป็นต้องยกเว้นกฎ ให้ปิดเฉพาะจุดพร้อมเหตุผล เช่น:
 
 ```ts
 // eslint-disable-next-line import/no-default-export -- Next.js page needs default export
-export default function Page() { /* ... */ }
+export default function Page() {
+  /* ... */
+}
 ```
 
 ข้อยกเว้นสำหรับ Next.js (App Router):
+
 - ไฟล์ `src/app/**/page.tsx`, `layout.tsx` ต้องใช้ `export default` ตาม convention จึงอนุญาตให้ปิด `import/no-default-export` รายไฟล์ด้วยคอมเมนต์ด้านบน
 
 ## แนวทางการเขียนโค้ด
+
 - โครงสร้างไฟล์
   - หน้าหลัก/เลย์เอาต์: `src/app/page.tsx`, `src/app/layout.tsx`
   - เส้นทางใหม่: เพิ่ม `src/app/<route>/page.tsx`
@@ -150,12 +165,14 @@ export default function Page() { /* ... */ }
   - โหมด `strict: true` เปิดใช้งานแล้ว และใช้ path alias `@/*`
 
 ## Troubleshooting
+
 - Hot Reload ไม่มา:
   - หยุดด้วย `Ctrl+C` แล้วรัน `docker compose up --build --remove-orphans`
   - ลบอาร์ติแฟกต์เดิม: ลบโฟลเดอร์ `.next` บนโฮสต์ (ถ้ามี)
   - รีเซ็ตสภาพแวดล้อม: `docker compose down -v && docker compose up --build`
 
 ## Nginx (ตัวเลือกเสริม)
+
 - ใช้ทดสอบร่วมกับ Next.js โหมดพัฒนา หรือจำลอง reverse proxy เบื้องต้น (gzip/cache ไฟล์ static + headers พื้นฐาน)
 - มี service `nginx` ใน `docker-compose.yml`
 
@@ -171,17 +188,20 @@ docker compose up
 - หากต้องการพอร์ต 80 ปรับ `nginx` -> `ports` เป็น `"80:80"`
 
 ## หมายเหตุสำหรับโปรดักชัน
+
 - แยกขั้นตอน build (`next build`) และรัน (`next start`)
 - วาง Nginx หน้า Next.js เพื่อเสิร์ฟ static + จัดการ headers/caching (แนะนำ Docker multi‑stage)
 - หากต้องการตัวอย่าง deploy เพิ่มเติม แจ้งได้เลย
 
 เคล็ดลับการทำงานร่วมกัน
+
 - แยกฟีเจอร์เป็นโฟลเดอร์ย่อยใน `src/components` เพื่อให้ง่ายต่อการค้นหา/ดูแล
 - รักษาการตั้งชื่อสม่ำเสมอ: `*.component.tsx`, `*.component.css`
 - หลีกเลี่ยงการผูก state ลึกเกินไป; ใช้ props ให้ไหลลง และยก state ขึ้นเมื่อจำเป็น
 - ตรวจสอบการรีเฟรชอัตโนมัติหลังแก้โค้ดเสมอ (ดูส่วน Troubleshooting ด้านบน)
 
 Nginx + Reverse Proxy (ตัวเลือกเสริม)
+
 - ใช้สำหรับทดสอบร่วมกับ Next.js ในโหมดพัฒนา หรือจำลอง reverse proxy เบื้องต้น (เปิด gzip/cache สำหรับไฟล์ static และตั้งค่า header พื้นฐาน)
 - มี service `nginx` อยู่ใน `docker-compose.yml`
 - วิธีใช้งาน
@@ -195,6 +215,7 @@ Nginx + Reverse Proxy (ตัวเลือกเสริม)
   - หากต้องการใช้พอร์ต 80 ให้แก้ `nginx` -> `ports` เป็น "80:80" แทน "8080:80"
 
 หมายเหตุสำหรับโปรดักชัน
+
 - แยกขั้นตอน build (`next build`) และรัน (`next start`)
 - วาง Nginx ไว้หน้าอีกชั้นเพื่อเสิร์ฟ static และจัดการ HTTP headers/caching (แนะนำ Docker multi‑stage)
 - หากต้องการตัวอย่างไฟล์สำหรับ deploy โปรดแจ้งได้เลย

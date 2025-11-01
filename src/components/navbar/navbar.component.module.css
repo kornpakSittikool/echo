@@ -1,0 +1,30 @@
+@reference "tailwindcss";
+/* Short, readable class names using Tailwind @apply */
+
+.navbar {
+  @apply relative mx-[10%] my-5 w-full rounded-md bg-[#57689415] px-6 py-2 text-white shadow-lg shadow-amber-50/10 backdrop-blur-md transition-all duration-500 md:rounded-2xl;
+}
+
+.logoWrap {
+  @apply relative h-10 w-10 md:h-20 md:w-20;
+}
+
+.logoImage {
+  @apply rounded-md md:rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105 object-cover;
+}
+
+.desktopMenu {
+  @apply ml-10 hidden gap-x-10 font-medium md:flex;
+}
+
+.navLink {
+  @apply transition-colors hover:text-amber-400;
+}
+
+.hamburger {
+  @apply flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-white/10 md:hidden;
+}
+
+.mobileMenu {
+  @apply absolute top-full left-0 flex w-full flex-col gap-4 rounded-md bg-[#57689415] p-6 shadow-lg md:hidden;
+}
