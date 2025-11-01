@@ -1,9 +1,10 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
-export default function Navbar() {
+export function Navbar() {
     const [open, setOpen] = useState(false);
     const menuItems = ['Home', 'About', 'Services', 'Portfolio', 'Contact'];
     return (
@@ -14,7 +15,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between">
                 {/* Logo */}
                 <div className="md:flex">
-                    <img
+                    <Image
                         src="/navbar/logo.jpg"
                         alt="Logo"
                         className="w-10 h-10 rounded-md md:w-20 md:h-20 md:rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"

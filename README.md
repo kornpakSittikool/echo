@@ -61,6 +61,30 @@ Echo — Next.js 15 + React 19 + Tailwind 4
 - TypeScript
   - โหมด `strict: true` เปิดใช้งานแล้ว และใช้ path alias `@/*` จาก `tsconfig.json`
 
+ESLint และกฎโค้ด
+- คอนฟิก: ใช้ ESLint 9 (Flat Config) รวมกับ Next.js + TypeScript‑ESLint แบบ type‑aware ดูไฟล์ `eslint.config.mjs:1`
+- ข้ามโฟลเดอร์มาตรฐาน (`node_modules`, `.next`, `out`, `dist`, `coverage`) ดู `eslint.config.mjs:4`
+- เปิด type‑aware lint สำหรับ `src/**/*.{ts,tsx}` ด้วย `parserOptions.project: true` ดู `eslint.config.mjs:8`
+- รันตรวจโค้ด:
+  - ท้องถิ่น: `npm run lint` (สคริปต์อยู่ที่ `package.json:9`)
+  - พร้อมแก้ไขอัตโนมัติ: `npm run lint -- --fix`
+  - ผ่าน Docker: `docker compose exec client npm run lint`
+- กฎสำคัญที่ใช้ (สรุป):
+  - ห้าม `any`: `@typescript-eslint/no-explicit-any: error`
+  - ห้าม default export: `import/no-default-export: error` (ยกเว้นไฟล์ App Router ดูด้านล่าง)
+  - ห้าม namespace import: `no-restricted-syntax` สำหรับ `ImportNamespaceSpecifier` (เช่น `import * as X from '...'`)
+  - จำกัด relative import ลึกๆ: `no-restricted-imports` กับแพทเทิร์น `../../*`, `../../../*` ให้ใช้ alias `@/*` แทน
+  - เทียบเท่ากันให้ใช้ `===`: `eqeqeq: ['error','always']`
+  - `console.*` เตือน: `no-console: warn`
+- แนวทางใช้งานกับกฎ:
+  - ใช้ named exports เสมอในคอมโพเนนต์: `export function Navbar() {}` แล้ว import แบบ `import { Navbar } from '@/components/navbar/navbar.component'`
+  - ใช้ path alias `@/*` แทนการไล่ `../../..`
+  - ถ้าจำเป็นต้องเว้นข้อยกเว้น ให้ปิด rule แบบแคบที่สุดและใส่เหตุผล เช่น:
+    - ปิด 1 บรรทัด: `// eslint-disable-next-line import/no-default-export -- Next.js page needs default export`
+    - ปิดทั้งไฟล์ (เลี่ยงถ้าไม่จำเป็น): `/* eslint-disable no-console */`
+- ข้อยกเว้นสำหรับ Next.js (App Router):
+  - ไฟล์อย่าง `src/app/**/page.tsx`, `layout.tsx` มักต้อง `export default` ตาม convention ของ Next.js จึงอนุโลมให้ปิด `import/no-default-export` รายไฟล์ด้วยคอมเมนต์ตามตัวอย่างข้างต้น
+
 สคริปต์สำคัญ
 - `npm run dev` — รัน dev server (ใช้ใน Docker ผ่าน compose อยู่แล้ว)
 - `npm run build` — สร้างโปรดักชันบิลด์
