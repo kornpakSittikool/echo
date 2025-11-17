@@ -1,3 +1,4 @@
+/* eslint-disable import/no-default-export */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

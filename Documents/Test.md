@@ -12,11 +12,11 @@
 
 ## รายการเทสที่มีอยู่
 
-| ไฟล์ | สิ่งที่ทดสอบ | หมายเหตุ |
-|------|--------------|----------|
-| `src/components/card/utils/card.utils.test.ts` | ฟังก์ชัน `buildClassName` และ `normalizePadding` | ตรวจสอบการรวม className, การแปลง padding |
-| `src/components/card/text/card.text.test.ts` | ตัว parser `parseLinesToChunks` | ครอบคลุม paragraph, spacer, list, heading, rich inputs |
-| `src/components/card/card.component.test.tsx` | (ไม่ถูกรันใน workflow ปัจจุบัน) การ render การ์ดและ helper `formatCardText` | มีไว้สำหรับอ้างอิง/ขยายในอนาคต หากนโยบายอนุญาตการทดสอบ `.tsx` |
+| ไฟล์                                           | สิ่งที่ทดสอบ                                                                | หมายเหตุ                                                      |
+| ---------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `src/components/card/utils/card.utils.test.ts` | ฟังก์ชัน `buildClassName` และ `normalizePadding`                            | ตรวจสอบการรวม className, การแปลง padding                      |
+| `src/components/card/text/card.text.test.ts`   | ตัว parser `parseLinesToChunks`                                             | ครอบคลุม paragraph, spacer, list, heading, rich inputs        |
+| `src/components/card/card.component.test.tsx`  | (ไม่ถูกรันใน workflow ปัจจุบัน) การ render การ์ดและ helper `formatCardText` | มีไว้สำหรับอ้างอิง/ขยายในอนาคต หากนโยบายอนุญาตการทดสอบ `.tsx` |
 
 > หมายเหตุ: Vitest ถูกตั้งค่าให้รันเฉพาะ `.ts` ทดสอบตามเงื่อนไขล่าสุด ดังนั้นไฟล์ `.test.tsx` จะไม่ถูกรวมอยู่ในการรันหรือ coverage โดยดีฟอลต์
 

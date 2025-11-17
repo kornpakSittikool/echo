@@ -3,7 +3,6 @@ import React, { type CSSProperties, type ReactNode } from "react";
 import { CardTextInput, parseLinesToChunks } from "./text/card.text";
 import { buildClassName, normalizePadding } from "./utils/card.utils";
 
-
 type CardProps = {
   children: ReactNode;
   padding?: number | string;
@@ -20,7 +19,10 @@ export function Card({ children, padding, className, style }: CardProps) {
   };
 
   return (
-    <section className={buildClassName("card", className)} style={mergedStyle}>
+    <section
+      className={buildClassName("card", className)}
+      style={mergedStyle}
+    >
       <div className="card__body">{children}</div>
     </section>
   );
@@ -34,7 +36,10 @@ export const formatCardText = (lines: CardTextInput[]) => {
       {chunks.map((chunk, index) => {
         if (chunk.type === "paragraph") {
           return (
-            <p key={`card-text-${index}`} className="card__paragraph">
+            <p
+              key={`card-text-${index}`}
+              className="card__paragraph"
+            >
               {chunk.content}
             </p>
           );
@@ -54,7 +59,10 @@ export const formatCardText = (lines: CardTextInput[]) => {
 
         if (chunk.type === "list") {
           return (
-            <ul key={`card-text-${index}`} className="card__list">
+            <ul
+              key={`card-text-${index}`}
+              className="card__list"
+            >
               {chunk.items.map((item, idx) => (
                 <li key={`card-text-${index}-${idx}`}>{item}</li>
               ))}
@@ -62,7 +70,12 @@ export const formatCardText = (lines: CardTextInput[]) => {
           );
         }
 
-        return <div key={`card-text-${index}`} className="card__spacer" />;
+        return (
+          <div
+            key={`card-text-${index}`}
+            className="card__spacer"
+          />
+        );
       })}
     </div>
   );

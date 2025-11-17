@@ -1,17 +1,15 @@
-@import "tailwindcss";
 @import "../components/navbar/navbar.component.css";
 @import "../components/card/card.component.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: linear-gradient(135deg, #f5f7fb 0%, #e8edf2 100%);
   --foreground: #1f2532;
   --card: rgba(255, 255, 255, 0.8);
   --accent: #c2a36e;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
 }
 
 @media (prefers-color-scheme: dark) {

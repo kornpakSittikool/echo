@@ -12,7 +12,9 @@ export type CardTextInput =
   | { type: "list"; items: string[] }
   | { type: "spacer" };
 
-export const parseLinesToChunks = (lines: CardTextInput[]): CardTextChunk[] => {
+export const parseLinesToChunks = (
+  lines: CardTextInput[],
+): CardTextChunk[] => {
   const chunks: CardTextChunk[] = [];
   let listBuffer: string[] = [];
 
@@ -57,7 +59,11 @@ export const parseLinesToChunks = (lines: CardTextInput[]): CardTextChunk[] => {
       chunks.push({ type: "paragraph", content: line.text });
       return;
     }
-    chunks.push({ type: "heading", level: line.type, content: line.text });
+    chunks.push({
+      type: "heading",
+      level: line.type,
+      content: line.text,
+    });
   });
 
   flushList();

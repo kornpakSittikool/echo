@@ -10,12 +10,12 @@ import Card, { formatCardText } from "@/components/card/card.component";
 
 ## Props ที่รองรับ
 
-| prop        | ประเภท                | ค่าเริ่มต้น | รายละเอียด |
-|-------------|-----------------------|--------------|-------------|
-| `children`  | `ReactNode`           | —            | เนื้อหาภายในการ์ด ใช้ได้ทั้ง JSX ปกติหรือผลลัพธ์จาก `formatCardText` |
-| `padding`   | `number \| string`    | `1.5rem`     | กำหนดระยะห่างภายในการ์ด ถ้าให้เป็น number จะตีเป็น px ให้อัตโนมัติ ส่วน string สามารถใช้ shorthand เช่น `"1rem 2rem"` หรือ `clamp(1rem, 4vw, 2.5rem)` |
-| `className` | `string`              | —            | ใช้ต่อ tailwind class เพิ่มเติม เช่น ปรับสี / เงา / layout |
-| `style`     | `CSSProperties`       | —            | ใช้ในกรณีที่ต้องการ override inline style โดยตรง เช่น กำหนด `style={{ padding: "24px 32px" }}` (จะมี priority มากกว่า prop `padding`) |
+| prop        | ประเภท             | ค่าเริ่มต้น | รายละเอียด                                                                                                                                            |
+| ----------- | ------------------ | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`  | `ReactNode`        | —           | เนื้อหาภายในการ์ด ใช้ได้ทั้ง JSX ปกติหรือผลลัพธ์จาก `formatCardText`                                                                                  |
+| `padding`   | `number \| string` | `1.5rem`    | กำหนดระยะห่างภายในการ์ด ถ้าให้เป็น number จะตีเป็น px ให้อัตโนมัติ ส่วน string สามารถใช้ shorthand เช่น `"1rem 2rem"` หรือ `clamp(1rem, 4vw, 2.5rem)` |
+| `className` | `string`           | —           | ใช้ต่อ tailwind class เพิ่มเติม เช่น ปรับสี / เงา / layout                                                                                            |
+| `style`     | `CSSProperties`    | —           | ใช้ในกรณีที่ต้องการ override inline style โดยตรง เช่น กำหนด `style={{ padding: "24px 32px" }}` (จะมี priority มากกว่า prop `padding`)                 |
 
 > หมายเหตุ: ภายใน component จะรวม `className` กับ `card` ให้ทันที เพราะฉะนั้นอย่าลืมใส่เฉพาะคลาสที่ต้องการเพิ่ม
 
@@ -27,11 +27,11 @@ import Card, { formatCardText } from "@/components/card/card.component";
 
 ```ts
 type CardTextInput =
-  | string                                      // ใช้เปิดย่อหน้าปกติ, ถ้าขึ้นต้น "- " จะเป็น bullet
+  | string // ใช้เปิดย่อหน้าปกติ, ถ้าขึ้นต้น "- " จะเป็น bullet
   | { type: "h1" | "h2" | "h3"; text: string } // heading
-  | { type: "p"; text: string }                 // paragraph
-  | { type: "list"; items: string[] }           // bullet list แบบกำหนดเอง
-  | { type: "spacer" };                         // เว้นช่องว่าง
+  | { type: "p"; text: string } // paragraph
+  | { type: "list"; items: string[] } // bullet list แบบกำหนดเอง
+  | { type: "spacer" }; // เว้นช่องว่าง
 ```
 
 - string ว่าง (`""`) จะถูกตีเป็น spacer ให้อัตโนมัติ
@@ -75,8 +75,8 @@ type CardTextInput =
 
 ## การปรับแต่งเพิ่มเติม
 
-1. **สีพื้นหลัง / เงา** – ที่ไฟล์ `card.component.css` มี class `.card` ใช้ `@layer components` สามารถแก้ไขหรือ override ผ่าน `className` ได้ เช่น `className="bg-white/80 shadow-none"`  
-2. **ระยะห่างภายใน** – ใช้ prop `padding` เป็น number หรือ string ได้ทันที, หรือระบุ `style={{ padding: "20px 30px" }}` หากต้องการค่าเฉพาะบุคคล  
+1. **สีพื้นหลัง / เงา** – ที่ไฟล์ `card.component.css` มี class `.card` ใช้ `@layer components` สามารถแก้ไขหรือ override ผ่าน `className` ได้ เช่น `className="bg-white/80 shadow-none"`
+2. **ระยะห่างภายใน** – ใช้ prop `padding` เป็น number หรือ string ได้ทันที, หรือระบุ `style={{ padding: "20px 30px" }}` หากต้องการค่าเฉพาะบุคคล
 3. **Typography** – class `.card__rich-text`, `.card__heading` ฯลฯ ถูกเตรียมไว้ให้ใช้ tailwind @apply แล้ว หากต้องการฟอนต์หรือสีเฉพาะสามารถแก้ใน CSS ตรงนั้นได้เลย
 
 ## โครงสร้างไฟล์

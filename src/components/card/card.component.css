@@ -1,13 +1,15 @@
+@tailwind components;
+
 @layer components {
   .card {
-    @apply w-full rounded-2xl border border-white/60 bg-white/70 text-slate-800 transition-all duration-300 overflow-hidden;
+    @apply w-full overflow-hidden rounded-2xl border border-white/60 bg-white/70 text-slate-800 transition-all duration-300;
     box-shadow: 0 25px 80px rgba(15, 23, 42, 0.1);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
   }
 
   .card__body {
-    @apply text-base leading-relaxed whitespace-pre-wrap;
+    @apply whitespace-pre-wrap text-base leading-relaxed;
   }
 
   .card__rich-text {
@@ -19,7 +21,7 @@
   }
 
   .card__list {
-    @apply list-disc pl-6 space-y-1 text-inherit;
+    @apply list-disc space-y-1 pl-6 text-inherit;
   }
 
   .card__spacer {
@@ -27,7 +29,7 @@
   }
 
   .card__heading {
-    @apply font-semibold text-slate-800 m-0;
+    @apply m-0 font-semibold text-slate-800;
   }
 
   .card__heading--h1 {

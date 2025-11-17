@@ -5,7 +5,8 @@ import {
   type CardTextChunk,
 } from "./card.text";
 
-const collectTypes = (chunks: CardTextChunk[]) => chunks.map((chunk) => chunk.type);
+const collectTypes = (chunks: CardTextChunk[]) =>
+  chunks.map((chunk) => chunk.type);
 
 describe("card text parser", () => {
   it("converts blank strings into spacer chunks", () => {
@@ -21,7 +22,11 @@ describe("card text parser", () => {
       "Outro",
     ]);
 
-    expect(collectTypes(chunks)).toEqual(["paragraph", "list", "paragraph"]);
+    expect(collectTypes(chunks)).toEqual([
+      "paragraph",
+      "list",
+      "paragraph",
+    ]);
     const list = chunks.find((chunk) => chunk.type === "list");
     expect(list).toEqual({
       type: "list",

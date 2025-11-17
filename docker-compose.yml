@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+      - WATCHPACK_POLLING_INTERVAL=1000
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000
+      - NEXT_TELEMETRY_DISABLED=1
+      - HOSTNAME=0.0.0.0
+      - PORT=3000
+    # Use webpack-based dev server with conditional install (faster restarts)
+    command:
+      [
+        "sh",
+        "-lc",
+        '[ -d node_modules ] && [ "$(ls -A node_modules 2>/dev/null)" ] || npm ci --no-audit --no-fund; exec npx next dev -H 0.0.0.0 -p 3000',
+      ]
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/.next
+    tty: true
+    stdin_open: true

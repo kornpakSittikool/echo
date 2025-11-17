@@ -1,5 +1,6 @@
+/* eslint-disable import/no-default-export */
 import { Card, formatCardText } from "@/components/card/card.component";
-import Navbar from "@/components/navbar/navbar.component";
+import { Navbar } from "@/components/navbar/navbar.component";
 
 export default function Home() {
   return (
@@ -30,7 +31,7 @@ export default function Home() {
 
         <Card
           padding="1rem 1.5rem"
-          className="shadow-none border-white/40 bg-white/60"
+          className="border-white/40 bg-white/60 shadow-none"
         >
           {formatCardText([
             { type: "h2", text: "Tip" },

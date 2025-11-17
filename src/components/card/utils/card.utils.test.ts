@@ -4,7 +4,13 @@ import { buildClassName, normalizePadding } from "./card.utils";
 describe("card utils", () => {
   describe("buildClassName", () => {
     it("joins truthy classes and skips falsy ones", () => {
-      const result = buildClassName("card", undefined, "shadow", "", "rounded");
+      const result = buildClassName(
+        "card",
+        undefined,
+        "shadow",
+        "",
+        "rounded",
+      );
       expect(result).toBe("card shadow rounded");
     });
 
