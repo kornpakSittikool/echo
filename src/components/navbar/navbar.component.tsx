@@ -1,7 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 export function Navbar() {
