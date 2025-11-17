@@ -7,40 +7,32 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
     const menuItems = ['Home', 'About', 'Services', 'Portfolio', 'Contact'];
     return (
-        <nav
-            className="mx-[10%] w-full my-5 py-2 px-6 rounded-md md:rounded-2xl shadow-lg shadow-amber-50/10
-                 bg-[#57689415] backdrop-blur-md text-white transition-all duration-500 relative"
-        >
-            <div className="flex items-center justify-between">
-                {/* Logo */}
-                <div className="md:flex">
+        <nav className="navbar">
+            <div className="navbar__content">
+                <div className="navbar__logo-wrapper">
                     <img
                         src="/navbar/logo.jpg"
                         alt="Logo"
-                        className="w-10 h-10 rounded-md md:w-20 md:h-20 md:rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
+                        className="navbar__logo"
                     />
                 </div>
 
-                {/* Desktop Menu */}
-                <ul className="hidden md:flex gap-x-10 font-medium ml-10">
+                <ul className="navbar__menu">
                     {menuItems.map((item) => (
                         <li key={item}>
-                            <a href="#" className="hover:text-amber-400 transition-colors">{item}</a>
+                            <a href="#" className="navbar__link">{item}</a>
                         </li>
                     ))}
                 </ul>
 
-
-                {/* Hamburger Button (มือถือ) */}
                 <button
-                    className="md:hidden flex items-center justify-center w-10 h-10 rounded-md hover:bg-white/10 transition-colors"
+                    className="navbar__toggle"
                     onClick={() => setOpen(!open)}
                 >
                     {open ? <X size={26} /> : <Menu size={26} />}
                 </button>
             </div>
 
-            {/* Mobile Menu with Framer Motion */}
             <AnimatePresence>
                 {open && (
                     <motion.div
@@ -48,7 +40,7 @@ export default function Navbar() {
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        className="absolute top-full left-0 w-full bg-[#57689415] rounded-md shadow-lg p-6 flex flex-col gap-4 md:hidden"
+                        className="navbar__mobile-menu"
                         variants={{
                             hidden: {},
                             visible: { transition: { staggerChildren: 0.3 } }
@@ -58,7 +50,7 @@ export default function Navbar() {
                             <motion.a
                                 key={item}
                                 href="#"
-                                className="hover:text-amber-400 transition-colors"
+                                className="navbar__mobile-link"
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
