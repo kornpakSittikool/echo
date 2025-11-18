@@ -6,13 +6,7 @@ import { useState } from "react";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const menuItems = [
-    "Homee",
-    "About",
-    "Services",
-    "Portfolio",
-    "Contact",
-  ];
+  const menuItems = ["Home", "About", "Services", "Portfolio", "Contact"];
   return (
     <nav className="navbar">
       <div className="navbar__content">
