@@ -35,7 +35,7 @@
   }
 
   .navbar__link {
-    @apply transition-colors no-underline hover:text-[#b7925e];
+    @apply no-underline transition-colors hover:text-[#b7925e];
   }
 
   .navbar__toggle {
