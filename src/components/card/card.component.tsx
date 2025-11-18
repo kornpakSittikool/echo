@@ -3,20 +3,35 @@ import React, { type CSSProperties, type ReactNode } from "react";
 import { CardTextInput, parseLinesToChunks } from "./text/card.text";
 import { buildClassName, normalizePadding } from "./utils/card.utils";
 
+type CardStyle = CSSProperties & {
+  "--card-heading-color"?: string;
+};
+
 type CardProps = {
   children: ReactNode;
   padding?: number | string;
   className?: string;
   style?: CSSProperties;
+  headingColor?: string;
 };
 
-export function Card({ children, padding, className, style }: CardProps) {
+export function Card({
+  children,
+  padding,
+  className,
+  style,
+  headingColor,
+}: CardProps) {
   const paddingValue = normalizePadding(padding);
 
-  const mergedStyle: CSSProperties = {
-    ...style,
+  const mergedStyle: CardStyle = {
+    ...((style ?? {}) as CardStyle),
     padding: style?.padding ?? paddingValue,
   };
+
+  if (headingColor && mergedStyle["--card-heading-color"] === undefined) {
+    mergedStyle["--card-heading-color"] = headingColor;
+  }
 
   return (
     <section

@@ -6,6 +6,11 @@
     box-shadow: 0 25px 80px rgba(15, 23, 42, 0.1);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+    box-sizing: border-box;
+    padding-inline: 1rem;
+    will-change: transform, box-shadow;
+    transform-origin: center top;
+    --card-heading-color: #475569;
   }
 
   .card__body {
@@ -17,19 +22,25 @@
   }
 
   .card__paragraph {
-    @apply m-0 text-inherit;
+    @apply m-0;
+    color: #0f172a;
   }
 
   .card__list {
-    @apply list-disc space-y-1 pl-6 text-inherit;
+    @apply list-disc space-y-1 pl-6;
+    color: #0f172a;
   }
 
   .card__spacer {
     @apply h-4;
+    color: var(--card-heading-color, #475569);
+    transition: color 0.3s ease;
   }
 
   .card__heading {
-    @apply m-0 font-semibold text-slate-800;
+    @apply m-0 font-semibold;
+    color: var(--card-heading-color, #475569);
+    transition: color 0.3s ease;
   }
 
   .card__heading--h1 {
@@ -42,5 +53,22 @@
 
   .card__heading--h3 {
     @apply text-lg;
+  }
+
+  @media (hover: hover) {
+    .card:hover {
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 35px 90px rgba(15, 23, 42, 0.18);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: none;
+    }
   }
 }

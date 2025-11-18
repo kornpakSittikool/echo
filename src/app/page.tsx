@@ -1,8 +1,12 @@
 /* eslint-disable import/no-default-export */
 import { Card, formatCardText } from "@/components/card/card.component";
+import { CardTextInput } from "@/components/card/text/card.text";
 import { Navbar } from "@/components/navbar/navbar.component";
+import echoStudioContent from "@/jsons/echo-studio.json";
 
 export default function Home() {
+  const { h1, tagline, description, highlights } = echoStudioContent;
+
   return (
     <main className="flex min-h-screen flex-col items-center gap-8 px-4 py-10">
       <div className="flex w-full justify-center">
@@ -10,38 +14,14 @@ export default function Home() {
       </div>
 
       <div className="w-full max-w-4xl space-y-6">
-        <Card padding={32}>
+        <Card padding={30}>
           {formatCardText([
-            { type: "h1", text: "Echo Studio" },
-            {
-              type: "p",
-              text: "สร้างประสบการณ์เว็บที่ดูสะอาด เรียบหรู และสบายตา",
-            },
+            { type: "h1", text: h1 },
+            { type: "p", text: tagline },
+            { type: "p", text: description },
             { type: "h3", text: "จุดเด่น" },
-            {
-              type: "list",
-              items: [
-                "gradients ที่นุ่มนวล",
-                "glass cards ที่โปร่งใส",
-                "motion ที่ไหลลื่น",
-              ],
-            },
-          ])}
-        </Card>
-
-        <Card
-          padding="1rem 1.5rem"
-          className="border-white/40 bg-white/60 shadow-none"
-        >
-          {formatCardText([
-            { type: "h2", text: "Tip" },
-            {
-              type: "p",
-              text: "ตั้งค่า padding เป็นตัวเลขหรือ string เพื่อควบคุมพื้นที่ได้ละเอียด",
-            },
-            "- numeric => px",
-            "- string => เช่น 1rem 2rem หรือ clamp(...)",
-          ])}
+            { type: "list", items: highlights },
+          ] as CardTextInput[])}
         </Card>
       </div>
     </main>
