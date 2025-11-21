@@ -1,0 +1,165 @@
+@tailwind components;
+
+@layer components {
+  .button {
+    font-family:
+      "Press Start 2P", "Space Grotesk", "Noto Sans Thai", system-ui,
+      sans-serif;
+
+    @apply relative inline-flex items-center justify-center gap-2;
+    padding: 0.9rem 1.4rem;
+    border: 3px solid #3a4dbb;
+    border-radius: 12px;
+    background: linear-gradient(150deg, #060915, #0c1230 60%, #121a3d);
+    color: #e2e8ff;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    box-shadow: 5px 5px 0 #000000;
+    transition:
+      transform 0.14s ease,
+      box-shadow 0.18s ease,
+      border-color 0.2s ease,
+      background 0.2s ease,
+      color 0.2s ease;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .button::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .button--sm {
+    padding: 0.65rem 1.05rem;
+    font-size: 0.82rem;
+    border-radius: 10px;
+  }
+
+  .button--md {
+    font-size: 0.95rem;
+  }
+
+  .button--lg {
+    padding: 1.05rem 1.7rem;
+    font-size: 1.05rem;
+    border-radius: 14px;
+  }
+
+  .button--block {
+    width: 100%;
+  }
+
+  .button--primary {
+    border-color: #4f5edc;
+    background: linear-gradient(145deg, #32409f, #4f5edc, #6c7cf5);
+    color: #f8fbff;
+    box-shadow: 6px 6px 0 #000000;
+  }
+
+  .button--secondary {
+    border-color: #2f354f;
+    background: linear-gradient(150deg, #0b0f1f, #11182c);
+    color: #dce3ff;
+  }
+
+  .button--ghost {
+    background: rgba(6, 10, 22, 0.8);
+    border-style: dashed;
+    border-color: rgba(98, 116, 214, 0.6);
+    color: #d4ddff;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
+  }
+
+  .button--danger {
+    border-color: #f87171;
+    background: linear-gradient(135deg, #be123c, #ef4444);
+    color: #fff5f5;
+    box-shadow:
+      0 16px 38px rgba(190, 18, 60, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  @media (hover: hover) {
+    .button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow:
+        7px 7px 0 #000000,
+        0 18px 40px rgba(22, 32, 68, 0.22);
+    }
+
+    .button:hover::after {
+      opacity: 1;
+    }
+
+    .button--ghost:hover {
+      background: rgba(46, 56, 110, 0.25);
+      border-color: rgba(148, 163, 184, 0.9);
+    }
+  }
+
+  .button:focus-visible {
+    outline: none;
+    border-color: #8ba5ff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.35);
+  }
+
+  .button:active {
+    transform: translate(0, 0);
+    box-shadow:
+      4px 4px 0 #000000,
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .button.is-loading {
+    pointer-events: none;
+  }
+
+  .button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .button__spinner {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-top-color: rgba(255, 255, 255, 0.1);
+    animation: buttonSpinner 0.9s linear infinite;
+  }
+
+  .button__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  @keyframes buttonSpinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .button {
+      width: 100%;
+    }
+  }
+}

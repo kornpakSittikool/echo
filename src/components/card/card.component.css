@@ -2,45 +2,58 @@
 
 @layer components {
   .card {
-    @apply w-full overflow-hidden rounded-2xl border border-white/60 bg-white/70 text-slate-800 transition-all duration-300;
-    box-shadow: 0 25px 80px rgba(15, 23, 42, 0.1);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    box-sizing: border-box;
-    padding-inline: 1rem;
-    will-change: transform, box-shadow;
-    transform-origin: center top;
-    --card-heading-color: #475569;
+    font-family:
+      "Press Start 2P", "Noto Sans Thai", system-ui, sans-serif;
+
+    @apply relative w-full overflow-hidden text-xs leading-relaxed;
+    background-color: #050816;
+    border: 4px solid #3a4dbb;
+    border-radius: 14px;
+    box-shadow: 6px 6px 0 #000000;
+
+    padding: 1.75rem 1.5rem;
+    color: #e2e8f0;
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
   }
 
   .card__body {
     @apply whitespace-pre-wrap text-base leading-relaxed;
+    color: #e2e8ff;
   }
 
   .card__rich-text {
-    @apply flex flex-col gap-2 text-base leading-relaxed text-slate-700;
+    @apply flex flex-col gap-2 text-base leading-relaxed text-indigo-50/90;
   }
 
   .card__paragraph {
     @apply m-0;
-    color: #0f172a;
+    color: #f1f5ff;
   }
 
   .card__list {
     @apply list-disc space-y-1 pl-6;
-    color: #0f172a;
+    color: #e0e9ff;
   }
 
   .card__spacer {
     @apply h-4;
-    color: var(--card-heading-color, #475569);
+    color: var(--card-heading-color, #eef2ff);
     transition: color 0.3s ease;
   }
 
   .card__heading {
     @apply m-0 font-semibold;
-    color: var(--card-heading-color, #475569);
+    color: var(--card-heading-color, #eef2ff);
     transition: color 0.3s ease;
+    text-shadow: 0 8px 20px rgba(15, 23, 42, 0.45);
   }
 
   .card__heading--h1 {
@@ -53,6 +66,31 @@
 
   .card__heading--h3 {
     @apply text-lg;
+  }
+
+  @media (max-width: 640px) {
+    .card {
+      padding: 1.5rem;
+      border-radius: 26px;
+    }
+
+    .card__rich-text,
+    .card__body {
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .card__heading--h1 {
+      font-size: 1.75rem;
+    }
+
+    .card__heading--h2 {
+      font-size: 1.35rem;
+    }
+
+    .card__heading--h3 {
+      font-size: 1.1rem;
+    }
   }
 
   @media (hover: hover) {

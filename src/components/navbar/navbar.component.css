@@ -1,16 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&display=swap");
 @tailwind components;
 
 @layer components {
   .navbar {
-    @apply relative mx-auto my-3 w-11/12 max-w-3xl rounded-xl border border-white/40 bg-white/30 px-3 py-1.5 text-slate-900 transition-all duration-500;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-  }
+    /* ใช้ฟอนต์ pixel เป็นหลัก ส่วนไทยให้ fallback เป็น Noto Sans Thai */
+    font-family:
+      "Press Start 2P", "Noto Sans Thai", system-ui, sans-serif;
 
-  .navbar::after {
-    content: "";
-    @apply pointer-events-none absolute inset-0 rounded-xl border border-white/40;
+    @apply relative mx-auto mt-6 w-11/12 max-w-5xl px-4 py-3 text-white;
+
+    /* กล่อง pixel ทึบ ๆ */
+    background-color: #050816;
+    border: 4px solid #3a4dbb;
+    border-radius: 0;
+
+    /* เงา pixel block */
+    box-shadow: 6px 6px 0 #000000;
   }
 
   .navbar__content {
@@ -22,35 +28,75 @@
   }
 
   .navbar__logo {
-    @apply h-9 w-9 rounded-lg object-cover transition-transform duration-300 md:h-16 md:w-16 md:rounded-2xl;
-    box-shadow: 0 12px 22px rgba(15, 23, 42, 0.15);
+    @apply h-10 w-10 object-cover;
+    border-radius: 2px;
+    border: 3px solid #ffffff;
+    box-shadow: 4px 4px 0 #000000;
   }
 
   .navbar__logo:hover {
-    @apply scale-105;
+    /* ขยับแบบ pixel */
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #000000;
   }
 
   .navbar__menu {
-    @apply ml-8 hidden list-none gap-6 text-sm font-medium tracking-wide text-slate-600 md:flex;
+    @apply ml-6 hidden list-none gap-4 text-[9px] md:flex;
+    letter-spacing: 0.18em; /* ให้ฟีล UI เกม */
   }
 
   .navbar__link {
-    @apply no-underline transition-colors hover:text-[#b7925e];
+    position: relative;
+    @apply inline-flex items-center justify-center px-3 py-2 no-underline;
+    min-width: 90px;
+
+    border: 2px solid transparent;
+    background-color: transparent;
   }
 
+  .navbar__link:hover {
+    border-color: #3a4dbb;
+    background-color: #ffffff;
+    color: #050816;
+    box-shadow: 4px 4px 0 #000000;
+    transform: translate(-2px, -2px);
+  }
+
+  /* mobile toggle ปุ่ม pixel */
   .navbar__toggle {
-    @apply flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/40 text-slate-700 shadow-sm backdrop-blur-lg transition-all md:hidden;
+    @apply flex h-9 w-9 cursor-pointer items-center justify-center md:hidden;
+    background-color: #111a4a;
+    border: 3px solid #3a4dbb;
+    box-shadow: 4px 4px 0 #000000;
+    border-radius: 0;
+    color: #ffffff;
   }
 
   .navbar__toggle:hover {
-    @apply -translate-y-[1px] text-[#b7925e];
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #000000;
   }
 
   .navbar__mobile-menu {
-    @apply absolute left-0 right-0 top-full z-50 mt-2 flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 text-slate-900 shadow-xl backdrop-blur-md md:hidden;
+    @apply absolute left-0 right-0 top-full z-50 mt-3 flex flex-col gap-2 md:hidden;
+    background-color: #050816;
+    border: 4px solid #3a4dbb;
+    box-shadow: 6px 6px 0 #000000;
+    padding: 0.75rem;
+    border-radius: 0;
   }
 
   .navbar__mobile-link {
-    @apply text-base font-medium tracking-wide text-slate-700 no-underline transition-colors hover:text-[#b7925e];
+    @apply px-3 py-2 text-xs text-white no-underline;
+    letter-spacing: 0.15em;
+    border: 2px solid transparent;
+    background-color: transparent;
+  }
+
+  .navbar__mobile-link:hover {
+    border-color: #3a4dbb;
+    background-color: #111a4a;
+    box-shadow: 4px 4px 0 #000000;
+    transform: translate(-2px, -2px);
   }
 }
