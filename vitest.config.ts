@@ -11,12 +11,16 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     setupFiles: ["./vitest.setup.ts"],
-    include: ["src/**/*.{test,spec}.ts"],
+    include: [
+      "src/**/*.{test,spec}.ts",
+      "scripts/**/*.{test,spec}.{ts,js,mjs}",
+    ],
+    environmentMatchGlobs: [["scripts/**/*", "node"]],
     coverage: {
       provider: "v8",
       reporter: ["text", "lcov"],
       reportsDirectory: "./coverage",
-      include: ["src/**/*.ts"],
+      include: ["src/**/*.ts", "scripts/**/*.{ts,js,mjs}"],
       exclude: ["src/**/*.tsx"],
     },
   },

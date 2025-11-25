@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "check:node": "node scripts/check-node.mjs",
+    "dev": "npm run check:node && next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
     "prepare": "husky",

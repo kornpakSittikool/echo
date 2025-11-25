@@ -1,3 +1,4 @@
+/* eslint-disable import/no-default-export */
 import { BackgroundDots } from "@/components/background/background-dots.component";
 import { Button } from "@/components/button/button.component";
 import { Card, formatCardText } from "@/components/card/card.component";
@@ -5,7 +6,7 @@ import { CardTextInput } from "@/components/card/text/card.text";
 import { Navbar } from "@/components/navbar/navbar.component";
 import echoStudioContent from "@/jsons/echo-studio.json";
 
-export function Home() {
+export default function Home() {
   const { h1, tagline, description, highlights } = echoStudioContent;
 
   return (
@@ -57,3 +58,4 @@ export function Home() {
     </main>
   );
 }
+
