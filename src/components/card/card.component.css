@@ -11,7 +11,7 @@
     border-radius: 14px;
     box-shadow: 6px 6px 0 #000000;
 
-    padding: 1.75rem 1.5rem;
+    padding: 1.3rem 1.25rem;
     color: #e2e8f0;
   }
 
@@ -25,12 +25,40 @@
   }
 
   .card__body {
-    @apply whitespace-pre-wrap text-base leading-relaxed;
+    @apply whitespace-pre-wrap text-[0.97rem] leading-snug;
     color: #e2e8ff;
   }
 
+  .card__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    border: 2px solid rgba(58, 77, 187, 0.6);
+    box-shadow: inset 0 0 0 1px rgba(226, 232, 255, 0.06),
+      0 14px 32px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.75rem;
+    background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.18), transparent 45%),
+      linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(3, 7, 18, 0.9));
+  }
+
+  .card__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    filter: saturate(1.05) contrast(1.02);
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .card:hover .card__media img {
+    transform: scale(1.02);
+    filter: saturate(1.12) contrast(1.05);
+  }
+
   .card__rich-text {
-    @apply flex flex-col gap-2 text-base leading-relaxed text-indigo-50/90;
+    @apply flex flex-col gap-1.5 text-[0.97rem] leading-snug text-indigo-50/90;
   }
 
   .card__paragraph {
@@ -57,15 +85,15 @@
   }
 
   .card__heading--h1 {
-    @apply text-2xl;
-  }
-
-  .card__heading--h2 {
     @apply text-xl;
   }
 
-  .card__heading--h3 {
+  .card__heading--h2 {
     @apply text-lg;
+  }
+
+  .card__heading--h3 {
+    @apply text-base;
   }
 
   @media (max-width: 640px) {
@@ -76,20 +104,20 @@
 
     .card__rich-text,
     .card__body {
-      font-size: 0.95rem;
-      line-height: 1.55;
+      font-size: 0.92rem;
+      line-height: 1.45;
     }
 
     .card__heading--h1 {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
     }
 
     .card__heading--h2 {
-      font-size: 1.35rem;
+      font-size: 1.2rem;
     }
 
     .card__heading--h3 {
-      font-size: 1.1rem;
+      font-size: 0.98rem;
     }
   }
 

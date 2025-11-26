@@ -1,4 +1,5 @@
 // Card.tsx
+import Image from "next/image";
 import React, { type CSSProperties, type ReactNode } from "react";
 import { CardTextInput, parseLinesToChunks } from "./text/card.text";
 import { buildClassName, normalizePadding } from "./utils/card.utils";
@@ -13,6 +14,8 @@ type CardProps = {
   className?: string;
   style?: CSSProperties;
   headingColor?: string;
+  mediaSrc?: string;
+  mediaAlt?: string;
 };
 
 export function Card({
@@ -21,6 +24,8 @@ export function Card({
   className,
   style,
   headingColor,
+  mediaSrc,
+  mediaAlt,
 }: CardProps) {
   const paddingValue = normalizePadding(padding);
 
@@ -33,11 +38,25 @@ export function Card({
     mergedStyle["--card-heading-color"] = headingColor;
   }
 
+  const hasMedia = Boolean(mediaSrc);
+
   return (
     <section
       className={buildClassName("card", className)}
       style={mergedStyle}
     >
+      {hasMedia && (
+        <div className="card__media">
+          <Image
+            src={mediaSrc ?? ""}
+            alt={mediaAlt ?? ""}
+            fill
+            sizes="(min-width: 1280px) 320px, (min-width: 768px) 50vw, 100vw"
+            priority={false}
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+      )}
       <div className="card__body">{children}</div>
     </section>
   );

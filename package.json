@@ -11,7 +11,7 @@
     "lint": "next lint",
     "format": "prettier \"**/*.{js,jsx,ts,tsx,css,md,json,html}\" --write",
     "format:check": "prettier \"**/*.{js,jsx,ts,tsx,css,md,json,html}\" --check",
-    "test": "vitest",
+    "test": "npm run build && vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
     "up:build": "docker compose up -d --build",

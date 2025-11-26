@@ -1,4 +1,4 @@
-/* eslint-disable import/no-default-export */
+import Link from "next/link";
 import { BackgroundDots } from "@/components/background/background-dots.component";
 import { Button } from "@/components/button/button.component";
 import { Card, formatCardText } from "@/components/card/card.component";
@@ -8,6 +8,14 @@ import echoStudioContent from "@/jsons/echo-studio.json";
 
 export default function Home() {
   const { h1, tagline, description, highlights } = echoStudioContent;
+
+  const cardContent: CardTextInput[] = [
+    { type: "h1", text: h1 },
+    { type: "p", text: tagline },
+    { type: "p", text: description },
+    { type: "h3", text: "จุดเด่น" },
+    { type: "list", items: highlights },
+  ];
 
   return (
     <main
@@ -27,26 +35,21 @@ export default function Home() {
         <Navbar />
       </div>
 
-      <div className="mt-2 w-full max-w-4xl p-4">
-        <Card padding={30}>
-          {formatCardText([
-            { type: "h1", text: h1 },
-            { type: "p", text: tagline },
-            { type: "p", text: description },
-            { type: "h3", text: "จุดเด่น" },
-            { type: "list", items: highlights },
-          ] as CardTextInput[])}
-        </Card>
-      </div>
+      <div className="mt-2 w-full max-w-4xl space-y-3 p-4">
+        <Card padding={30}>{formatCardText(cardContent)}</Card>
 
-      <div className="w-full max-w-4xl p-4">
-        <div className="mt-4 flex flex-wrap gap-3">
-          <Button
-            variant="primary"
-            size="md"
+        <div className="flex flex-wrap gap-3 py-4">
+          <Link
+            href="/portfolio"
+            className="inline-block"
           >
-            สำรวจผลงาน
-          </Button>
+            <Button
+              variant="primary"
+              size="md"
+            >
+              สำรวจผลงาน
+            </Button>
+          </Link>
           <Button
             variant="secondary"
             size="md"

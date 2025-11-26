@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export function Navbar() {
@@ -13,7 +14,10 @@ export function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar__content">
-        <div className="navbar__logo-wrapper">
+        <Link
+          href="/"
+          className="navbar__logo-wrapper"
+        >
           <Image
             src="/navbar/logo.jpg"
             alt="Logo"
@@ -22,19 +26,22 @@ export function Navbar() {
             priority
             className="navbar__logo"
           />
-        </div>
+        </Link>
 
         <ul className="navbar__menu">
-          {menuItems.map((item) => (
-            <li key={item}>
-              <a
-                href="#"
-                className="navbar__link"
-              >
-                {item}
-              </a>
-            </li>
-          ))}
+          {menuItems.map((item) => {
+            const href = item === "Home" ? "/" : "#";
+            return (
+              <li key={item}>
+                <Link
+                  href={href}
+                  className="navbar__link"
+                >
+                  {item}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <button
@@ -59,19 +66,25 @@ export function Navbar() {
               visible: { transition: { staggerChildren: 0.15 } },
             }}
           >
-            {menuItems.map((item) => (
-              <motion.a
-                key={item}
-                href="#"
-                className="navbar__mobile-link"
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-              >
-                {item}
-              </motion.a>
-            ))}
+            {menuItems.map((item) => {
+              const href = item === "Home" ? "/" : "#";
+              return (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <Link
+                    href={href}
+                    className="navbar__mobile-link"
+                  >
+                    {item}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
