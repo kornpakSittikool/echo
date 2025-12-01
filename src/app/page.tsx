@@ -1,4 +1,7 @@
+ "use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { BackgroundDots } from "@/components/background/background-dots.component";
 import { Button } from "@/components/button/button.component";
 import { Card, formatCardText } from "@/components/card/card.component";
@@ -17,8 +20,30 @@ export default function Home() {
     { type: "list", items: highlights },
   ];
 
+  const pageVariants = {
+    hidden: { opacity: 0, y: 18 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.12, delayChildren: 0.08 },
+    },
+  };
+
+  const blockVariants = {
+    hidden: { opacity: 0, y: 16, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      },
+    },
+  };
+
   return (
-    <main
+    <motion.main
       className="relative flex h-screen w-full flex-col items-center"
       style={{
         backgroundImage:
@@ -28,6 +53,9 @@ export default function Home() {
         backgroundRepeat: "no-repeat",
         backdropFilter: "blur(2px)",
       }}
+      initial="hidden"
+      animate="show"
+      variants={pageVariants}
     >
       <BackgroundDots />
 
@@ -36,28 +64,37 @@ export default function Home() {
       </div>
 
       <div className="mt-2 w-full max-w-4xl space-y-3 p-4">
-        <Card padding={30}>{formatCardText(cardContent)}</Card>
+        <motion.div variants={blockVariants}>
+          <Card padding={30}>{formatCardText(cardContent)}</Card>
+        </motion.div>
 
-        <div className="flex flex-wrap gap-3 py-4">
-          <Link
-            href="/portfolio"
-            className="inline-block"
-          >
+        <motion.div
+          className="flex flex-wrap gap-3 py-4"
+          variants={blockVariants}
+        >
+          <motion.div variants={blockVariants}>
+            <Link
+              href="/portfolio"
+              className="inline-block"
+            >
+              <Button
+                variant="primary"
+                size="md"
+              >
+                สำรวจผลงาน
+              </Button>
+            </Link>
+          </motion.div>
+          <motion.div variants={blockVariants}>
             <Button
-              variant="primary"
+              variant="secondary"
               size="md"
             >
-              สำรวจผลงาน
+              ติดต่อเรา
             </Button>
-          </Link>
-          <Button
-            variant="secondary"
-            size="md"
-          >
-            ติดต่อเรา
-          </Button>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </main>
+    </motion.main>
   );
 }

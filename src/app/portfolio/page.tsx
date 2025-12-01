@@ -69,6 +69,8 @@ const projects = [
   highlights: string[];
 }>;
 
+const COMPACT_HIGHLIGHT_COUNT = 2;
+
 const pageVariants = {
   hidden: { opacity: 0, y: 18 },
   show: {
@@ -131,10 +133,10 @@ export default function PortfolioPage() {
         </motion.div>
 
         <motion.div
-          className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+          className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
           variants={gridVariants}
         >
-          {projects.slice(0, 4).map((project) => (
+          {projects.map((project) => (
             <motion.div
               key={project.title}
               variants={blockVariants}
@@ -144,34 +146,19 @@ export default function PortfolioPage() {
                 padding={22}
                 mediaSrc={project.image}
                 mediaAlt={project.title}
+                className="card--compact"
               >
                 {formatCardText([
                   { type: "h3", text: project.title },
                   { type: "p", text: project.blurb },
-                  { type: "list", items: project.highlights },
+                  {
+                    type: "list",
+                    items: project.highlights.slice(0, COMPACT_HIGHLIGHT_COUNT),
+                  },
                 ] as CardTextInput[])}
               </Card>
             </motion.div>
           ))}
-        </motion.div>
-
-        <motion.div
-          className="flex justify-center"
-          variants={blockVariants}
-        >
-          <div className="w-full max-w-xl">
-            <Card
-              padding={24}
-              mediaSrc={projects[4].image}
-              mediaAlt={projects[4].title}
-            >
-              {formatCardText([
-                { type: "h3", text: projects[4].title },
-                { type: "p", text: projects[4].blurb },
-                { type: "list", items: projects[4].highlights },
-              ] as CardTextInput[])}
-            </Card>
-          </div>
         </motion.div>
       </div>
     </motion.main>

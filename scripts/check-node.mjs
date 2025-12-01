@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import { resolve } from "path";
-import { pathToFileURL } from "url";
+import { fileURLToPath } from "url";
 
 function normalizeVersion(version) {
   return version.trim().replace(/^v/, "");
@@ -40,9 +40,9 @@ export function checkNodeVersion({
   return { ok, required, current };
 }
 
-const invokedDirectly =
-  process.argv[1] &&
-  pathToFileURL(process.argv[1]).href === import.meta.url;
+const thisFilePath = fileURLToPath(import.meta.url);
+
+const invokedDirectly = process.argv[1] === thisFilePath;
 
 if (invokedDirectly) {
   const { ok } = checkNodeVersion();

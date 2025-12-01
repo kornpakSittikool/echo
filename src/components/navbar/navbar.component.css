@@ -52,6 +52,11 @@
 
     border: 2px solid transparent;
     background-color: transparent;
+    color: #ffffff;
+  }
+
+  .navbar__link:visited {
+    color: #ffffff;
   }
 
   .navbar__link:hover {
@@ -91,6 +96,11 @@
     letter-spacing: 0.15em;
     border: 2px solid transparent;
     background-color: transparent;
+    color: #ffffff;
+  }
+
+  .navbar__mobile-link:visited {
+    color: #ffffff;
   }
 
   .navbar__mobile-link:hover {

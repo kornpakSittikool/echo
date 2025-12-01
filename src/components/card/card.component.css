@@ -104,6 +104,27 @@
     @apply text-base;
   }
 
+  /* Compact variant for tighter card height */
+  .card--compact {
+    padding: 1rem 0.95rem;
+    border-radius: 12px;
+  }
+
+  .card--compact .card__media {
+    aspect-ratio: 21 / 9;
+    margin-bottom: 0.6rem;
+  }
+
+  .card--compact .card__body,
+  .card--compact .card__rich-text {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .card--compact .card__heading--h3 {
+    font-size: 0.96rem;
+  }
+
   @media (max-width: 640px) {
     .card {
       padding: 1.5rem;

@@ -4,12 +4,10 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { NAV_ITEMS } from "./config/navbar.config";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-
-  // ใช้ตัวพิมพ์เล็ก/ใหญ่ปกติ เดี๋ยวฟอนต์ pixel จัดการเอง
-  const menuItems = ["Home", "About", "Services", "Portfolio", "Contact"];
 
   return (
     <nav className="navbar">
@@ -29,19 +27,16 @@ export function Navbar() {
         </Link>
 
         <ul className="navbar__menu">
-          {menuItems.map((item) => {
-            const href = item === "Home" ? "/" : "#";
-            return (
-              <li key={item}>
-                <Link
-                  href={href}
-                  className="navbar__link"
-                >
-                  {item}
-                </Link>
-              </li>
-            );
-          })}
+          {NAV_ITEMS.map((item) => (
+            <li key={item.label}>
+              <Link
+                href={item.href}
+                className="navbar__link"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <button
@@ -66,25 +61,22 @@ export function Navbar() {
               visible: { transition: { staggerChildren: 0.15 } },
             }}
           >
-            {menuItems.map((item) => {
-              const href = item === "Home" ? "/" : "#";
-              return (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
+            {NAV_ITEMS.map((item) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+              >
+                <Link
+                  href={item.href}
+                  className="navbar__mobile-link"
                 >
-                  <Link
-                    href={href}
-                    className="navbar__mobile-link"
-                  >
-                    {item}
-                  </Link>
-                </motion.div>
-              );
-            })}
+                  {item.label}
+                </Link>
+              </motion.div>
+            ))}
           </motion.div>
         )}
       </AnimatePresence>
