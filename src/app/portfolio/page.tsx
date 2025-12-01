@@ -153,7 +153,10 @@ export default function PortfolioPage() {
                   { type: "p", text: project.blurb },
                   {
                     type: "list",
-                    items: project.highlights.slice(0, COMPACT_HIGHLIGHT_COUNT),
+                    items: project.highlights.slice(
+                      0,
+                      COMPACT_HIGHLIGHT_COUNT,
+                    ),
                   },
                 ] as CardTextInput[])}
               </Card>
